@@ -1,0 +1,18 @@
+{
+  "messages": [
+  	{
+  	"message_name": "sample_message_name",
+    "fields": [
+      {"field_name": "uint8_field", "format": "uint8", "value": 1},
+      {"field_name": "uint16_field", "format": "uint16", "value": 2},
+      {"field_name": "uint32_field", "format": "uint32", "value": 3},
+      {"field_name": "uint64_field", "format": "uint64", "value": 4},
+      {"field_name": "int8_field", "format": "int8", "value": 5},
+      {"field_name": "int16_field", "format": "int16", "value": 6},
+      {"field_name": "int32_field", "format": "int32", "value": 7},
+      {"field_name": "int64_field", "format": "int64", "value": 8},
+      {"field_name": "string_field", "format": "string", "value": "Hello"}
+    ]
+	}
+  ]
+}
