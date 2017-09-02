@@ -7,8 +7,8 @@ import message_encoder
 
 def main():
     messages_path = os.getcwd() + "/messages.json"
-    address = "192.168.1.1"
-    port = 10000
+    address = "127.0.0.1"
+    port = 50000
 
     message_loader = json_message_loader.json_message_loader()
     json_messages = message_loader.load_messages(messages_path)
