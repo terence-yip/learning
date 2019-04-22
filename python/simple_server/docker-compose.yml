@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  rel:
+    build: .
+    ports:
+      - "4000:80"
+  dev:
+    build: .
+    ports:
+      - "4000:80"
+    volumes:
+      - ./src:/app/src

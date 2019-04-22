@@ -1,13 +1,7 @@
-FROM ubuntu:xenial
+FROM python:3.7.3-alpine3.9
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y vim
+COPY src /app/src
 
-RUN apt-get install -y python3
-
-COPY simple_server /app/simple_server
-
-EXPOSE 80
-
-CMD python3 /app/simple_server/main.py
+CMD python3 /app/src/main.py

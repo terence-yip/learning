@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-import SocketServer
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 class S(BaseHTTPRequestHandler):
     def _set_headers(self):
@@ -12,7 +11,7 @@ class S(BaseHTTPRequestHandler):
 
     def do_GET(self):
         self._set_headers()
-        self.wfile.write("<html><body><h1>hi!</h1></body></html>")
+        self.wfile.write("<html><body><h1>Hello World</h1></body></html>".encode())
 
     def do_HEAD(self):
         self._set_headers()
@@ -22,10 +21,9 @@ class S(BaseHTTPRequestHandler):
         self._set_headers()
         content_len = int(self.headers.getheader('content-length', 0))
         post_body = 'response' + self.rfile.read(content_len)
-        print(post_body)
-        self.wfile.write(post_body)
+        self.wfile.write(post_body.encode())
         
-def run(server_class=HTTPServer, handler_class=S, port=5000):
+def run(server_class=HTTPServer, handler_class=S, port=80):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
     print('Starting httpd...')
@@ -33,22 +31,7 @@ def run(server_class=HTTPServer, handler_class=S, port=5000):
 
 if __name__ == "__main__":
     from sys import argv
-    print("HELLO")
     if len(argv) == 2:
         run(port=int(argv[1]))
     else:
         run()
-p = '''
-import http.server
-
-def main():
-    server_class = http.server.HTTPServer
-    handler_class = http.server.SimpleHTTPRequestHandler
-    server_address = ('', 80)
-    httpd = server_class(server_address, handler_class)
-    httpd.serve_forever()
-
-
-if __name__ == "__main__":
-    main()
-'''
