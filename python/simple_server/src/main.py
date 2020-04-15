@@ -1,8 +1,8 @@
-#!/usr/bin/python3
+#!/usr/local/bin/python3
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-class S(BaseHTTPRequestHandler):
+class RequestHandler(BaseHTTPRequestHandler):
     def _set_headers(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
@@ -11,7 +11,14 @@ class S(BaseHTTPRequestHandler):
 
     def do_GET(self):
         self._set_headers()
-        self.wfile.write("<html><body><h1>Hello World</h1></body></html>".encode())
+        self.wfile.write("""
+            <html>
+                <body>
+                    <h1>
+                        Hello World
+                    </h1>
+                </body>
+            </html>""".encode())
 
     def do_HEAD(self):
         self._set_headers()
@@ -23,7 +30,7 @@ class S(BaseHTTPRequestHandler):
         post_body = 'response' + self.rfile.read(content_len)
         self.wfile.write(post_body.encode())
         
-def run(server_class=HTTPServer, handler_class=S, port=80):
+def run(server_class=HTTPServer, handler_class=RequestHandler, port=80):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
     print('Starting httpd...')
